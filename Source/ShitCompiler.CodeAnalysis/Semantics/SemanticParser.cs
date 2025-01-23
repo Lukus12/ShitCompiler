@@ -62,9 +62,9 @@ namespace ShitCompiler.CodeAnalysis.Semantics
                 case LiteralExpressionSyntax literal:
                     HandleLiteralExpression(literal);
                     break;
-                case FunctionDeclarationSyntax functionDeclaration:
+                /*case FunctionDeclarationSyntax functionDeclaration:
                     HandleFunctionDeclaration(functionDeclaration);
-                    break;
+                    break;*/
                 case VariableDeclarationSyntax variable:
                     HandleVariable(variable);
                     break;
@@ -80,12 +80,12 @@ namespace ShitCompiler.CodeAnalysis.Semantics
                 case NameExpressionSyntax name:
                     HandleNameExpression(name);
                     break;
-                case CallExpressionSyntax fuctionCall:
+                /*case CallExpressionSyntax fuctionCall:
                     HandleCallExpression(fuctionCall);
-                    break;
-                case ReturnStatementSyntax returnState:
+                    break;*/
+               /* case ReturnStatementSyntax returnState:
                     HandleReturnExpression(returnState);
-                    break;
+                    break;*/
                 case ParenthesizedExpressionSyntax parenthesizedExpression:
                     HandleParenthesizedExpression(parenthesizedExpression);
                     break;
@@ -156,7 +156,7 @@ namespace ShitCompiler.CodeAnalysis.Semantics
             );
         }
 
-        private void HandleCallExpression(CallExpressionSyntax call)
+        /*private void HandleCallExpression(CallExpressionSyntax call)
         {
             CheckIdentifierDeclaration(call, call.Identifier);
 
@@ -208,7 +208,7 @@ namespace ShitCompiler.CodeAnalysis.Semantics
 
                 i++;
             }
-        }
+        }*/
 
         private void HandleIfStatement(IfStatementSyntax ifStatement)
         {
@@ -286,8 +286,8 @@ namespace ShitCompiler.CodeAnalysis.Semantics
         private void HandleVariable(VariableDeclarationSyntax variable)
         {
             Declarate(variable.Identifier, variable.TypeClause);
-            HandleSyntaxNode(variable.Initializer);
-            PromoteType(variable, variable.Identifier, variable.Initializer);
+         //   HandleSyntaxNode(variable.Initializer);
+         //   PromoteType(variable, variable.Identifier, variable.Initializer);
         }
 
         //Обрабатывает объявление какого либо идентификатора в текущем Scope
@@ -377,7 +377,7 @@ namespace ShitCompiler.CodeAnalysis.Semantics
                     throw new InvalidOperationException();
             }
         }
-
+        /*
         private void HandleFunctionDeclaration(FunctionDeclarationSyntax funk)
         {
             Declarate(funk.Identifier, funk.TypeClause, true);
@@ -423,7 +423,7 @@ namespace ShitCompiler.CodeAnalysis.Semantics
 
             HandleSyntaxNode(funk.Block, false);
 
-            if (!_hasFunctionReturn && funcType.DataType != DataType.Unit)
+            if (!_hasFunctionReturn)
             {
                 errorsHandler.Handle(
                     new SemanticError(
@@ -434,7 +434,7 @@ namespace ShitCompiler.CodeAnalysis.Semantics
             }
 
             _symbolTable.DismissBlock();
-        }
+        }*/
 
         private void HandleBinaryExpression(BinaryExpressionSyntax binaryExpression)
         {
@@ -485,15 +485,13 @@ namespace ShitCompiler.CodeAnalysis.Semantics
             );
         }
 
+        /*
         private void HandleReturnExpression(
             ReturnStatementSyntax ret
         )
         {
             _hasFunctionReturn = true;
-            if (_currentReturnDataType.Type == DataType.Unit)
-            {
-                return;
-            }
+            
 
             if (ret.Expression == null)
             {
@@ -524,7 +522,7 @@ namespace ShitCompiler.CodeAnalysis.Semantics
                 )
             );
 
-        }
+        }*/
 
     }
 }

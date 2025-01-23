@@ -204,8 +204,8 @@ public class SimpleSyntaxParser(
 
     private StatementSyntax ParseVariableDeclaration()
     {
-        var expected = _lexemeQueue.Peek().Kind == SyntaxKind.ValKeyword
-            ? SyntaxKind.ValKeyword
+        var expected = _lexemeQueue.Peek().Kind == SyntaxKind.VarKeyword
+            ? SyntaxKind.VarKeyword
             : SyntaxKind.VarKeyword;
 
         var keyword = MatchToken(expected);
@@ -322,7 +322,7 @@ public class SimpleSyntaxParser(
         if (_lexemeQueue.Peek().Kind == SyntaxKind.OpenBracketToken)
         {
             var openBracket = MatchToken(SyntaxKind.OpenBracketToken);
-            var expression = ParseBinaryExpression();
+            var expression = ParseNumberLiteral();
             var closeBracket = MatchToken(SyntaxKind.CloseBracketToken);
             operatorToken = MatchToken(SyntaxKind.ColonEqualsToken);
             right = ParseBinaryExpression();
@@ -461,7 +461,7 @@ public class SimpleSyntaxParser(
     {
         var identifier = MatchToken(SyntaxKind.IdentifierToken);
         var openParenthesisToken = MatchToken(SyntaxKind.OpenBracketToken);
-        var arguments = ParseArguments(SyntaxKind.CloseBracketToken);
+        var arguments = ParseNumberLiteral();
         var closeParenthesisToken = MatchToken(SyntaxKind.CloseBracketToken);
         return new IndexExpressionSyntax(identifier, openParenthesisToken, arguments, closeParenthesisToken);
     }

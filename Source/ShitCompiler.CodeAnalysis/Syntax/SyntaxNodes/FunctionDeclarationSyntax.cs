@@ -1,5 +1,6 @@
 using ShitCompiler.CodeAnalysis.Lexicon;
-
+using System.Linq;
+using System.Text;
 
 namespace ShitCompiler.CodeAnalysis.Syntax.SyntaxNodes;
 
@@ -8,7 +9,8 @@ public sealed record FunctionDeclarationSyntax(
     SeparatedSyntaxList<ParameterSyntax> Parameters,
     BlockStatementSyntax Block,
     Lexeme DotToken
-) : MemberSyntax(SyntaxKind.FunctionDeclaration) {
+) : MemberSyntax(SyntaxKind.FunctionDeclaration)
+{
 
     public override IEnumerable<SyntaxNode> GetChildren()
     {
