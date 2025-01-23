@@ -52,9 +52,13 @@ public enum SyntaxKind
     /// val
     /// </summary>
     CaseKeyword,
+
     BeginKeyword,
     EndKeyword,
-    EndTKeyword,
+
+    EqualsToken,
+
+
     FalseKeyword,
     TrueKeyword,
 

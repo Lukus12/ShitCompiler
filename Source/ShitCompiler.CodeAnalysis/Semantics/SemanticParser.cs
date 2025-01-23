@@ -62,9 +62,9 @@ namespace ShitCompiler.CodeAnalysis.Semantics
                 case LiteralExpressionSyntax literal:
                     HandleLiteralExpression(literal);
                     break;
-                /*case FunctionDeclarationSyntax functionDeclaration:
+                case FunctionDeclarationSyntax functionDeclaration:
                     HandleFunctionDeclaration(functionDeclaration);
-                    break;*/
+                    break;
                 case VariableDeclarationSyntax variable:
                     HandleVariable(variable);
                     break;
@@ -286,8 +286,8 @@ namespace ShitCompiler.CodeAnalysis.Semantics
         private void HandleVariable(VariableDeclarationSyntax variable)
         {
             Declarate(variable.Identifier, variable.TypeClause);
-         //   HandleSyntaxNode(variable.Initializer);
-         //   PromoteType(variable, variable.Identifier, variable.Initializer);
+           // HandleSyntaxNode(variable.Initializer);
+            //PromoteType(variable, variable.Identifier, variable.Initializer);
         }
 
         //Обрабатывает объявление какого либо идентификатора в текущем Scope
@@ -377,10 +377,10 @@ namespace ShitCompiler.CodeAnalysis.Semantics
                     throw new InvalidOperationException();
             }
         }
-        /*
+        
         private void HandleFunctionDeclaration(FunctionDeclarationSyntax funk)
         {
-            Declarate(funk.Identifier, funk.TypeClause, true);
+           // Declarate(funk.Identifier, funk.TypeClause, true);
 
             _symbolTable.CreateNewSymbolBlock();
 
@@ -393,11 +393,11 @@ namespace ShitCompiler.CodeAnalysis.Semantics
                 argParams.Add(type);
             }
 
-            Symbol? funcType = _symbolTable.Find(
-                funk.Identifier
-            );
+            //Symbol? funcType = _symbolTable.Find(
+            //    funk.Identifier
+            //);
 
-            if (funcType == null)
+            /*if (funcType == null)
             {
                 errorsHandler.Handle(
                     new SemanticError(
@@ -406,35 +406,35 @@ namespace ShitCompiler.CodeAnalysis.Semantics
                     )
                 );
                 return;
-            }
+            }*/
 
             _currentFunction = funk;
-            _currentReturnDataType = funcType.DataType;
+            //_currentReturnDataType = funcType.DataType;
             _hasFunctionReturn = false;
 
-            mFunctions.Add(
+            /*mFunctions.Add(
                 funk.Identifier.OriginalValue,
                 new FunctionSemantic(
                     funcType.DataType,
                     funk,
                     argParams
                 )
-            );
+            );*/
 
             HandleSyntaxNode(funk.Block, false);
 
             if (!_hasFunctionReturn)
             {
-                errorsHandler.Handle(
+                /*errorsHandler.Handle(
                     new SemanticError(
-                        funk.Identifier.Start,
-                        $"No function return statement for {funk.Identifier.OriginalValue}"
+                        funk.Var.Start
+                        //$"No function return statement for {funk.Var.OriginalValue}"
                     )
-                );
+                );*/
             }
 
             _symbolTable.DismissBlock();
-        }*/
+        }
 
         private void HandleBinaryExpression(BinaryExpressionSyntax binaryExpression)
         {

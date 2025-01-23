@@ -3,9 +3,10 @@ namespace ShitCompiler.CodeAnalysis.Syntax.SyntaxNodes;
 
 public sealed record CaseExpressionSyntax(
     Lexeme CaseKeyword,
-    Lexeme Indenteficator,
-    Lexeme OfKeyword,
-    Lexeme EndKeyword
+    Lexeme Identifier,
+    BlockStatementSyntax Block,
+    Lexeme SemicolonToken
+
 ) : StatementSyntax(
     SyntaxKind.CaseKeyword
 )
@@ -14,9 +15,9 @@ public sealed record CaseExpressionSyntax(
     {
         return [
             CaseKeyword,
-            Indenteficator,
-            OfKeyword,
-            EndKeyword
+            Identifier,
+            Block,
+            SemicolonToken
          ];
     }
 }

@@ -18,43 +18,22 @@ public class SymbolTable
 
     private static void InitializeBaseTypes(SymbolScope root)
     {
-        root.AddSymbol(new Symbol( 
-            "unit", 
-            0,
-            DataType.Type,
-            []
-        ));
-
-        root.AddSymbol(new Symbol( 
-            "long", 
+        root.AddSymbol(new Symbol(
+            "Single", 
             0,
             DataType.Type,
             []
         ));
         
         root.AddSymbol(new Symbol(
-            "double",
+            "Integer",
             0,
             DataType.Type,
             []
-        ));
+        )); 
         
         root.AddSymbol(new Symbol(
-            "char",
-            0,
-            DataType.Type,
-            []
-        ));
-        
-        root.AddSymbol(new Symbol(
-            "string",
-            0,
-            DataType.Type,
-            []
-        ));
-        
-        root.AddSymbol(new Symbol(
-            "bool",
+            "Boolean",
             0,
             DataType.Type,
             []

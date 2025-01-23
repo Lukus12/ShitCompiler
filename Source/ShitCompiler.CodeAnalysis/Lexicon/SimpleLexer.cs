@@ -109,18 +109,13 @@ public class SimpleLexer: ILexer
                 kind = _textCursor.TryAdvance('=')
                     ? SyntaxKind.LessThanEqualsToken 
                     : SyntaxKind.LessThanToken;
+                kind = _textCursor.TryAdvance('>')
+                    ? SyntaxKind.ExclamationEqualsToken
+                    : SyntaxKind.BadToken;
                 break;
             case '=':
                 _textCursor.Advance();
-                kind = _textCursor.TryAdvance('=')
-                    ? SyntaxKind.EqualsEqualsToken
-                    : SyntaxKind.ColonEqualsToken;
-                break;
-            case '!':
-                _textCursor.Advance();
-                kind = _textCursor.TryAdvance('=')
-                    ? SyntaxKind.ExclamationEqualsToken
-                    : SyntaxKind.BadToken;
+                kind = SyntaxKind.EqualsToken;
                 break;
             case '|':
                 _textCursor.Advance();

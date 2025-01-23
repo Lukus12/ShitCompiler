@@ -152,8 +152,8 @@ public class SimpleSyntaxParser(
         {
             case SyntaxKind.OpenBraceToken:
                 return ParseBlockStatement();
-            //case SyntaxKind.VarKeyword:
-            //    return ParseVariableDeclaration();
+            case SyntaxKind.VarKeyword:
+                return ParseVariableDeclaration();
             /*case SyntaxKind.CaseKeyword:
                 return ParseCaseStatement();*/
             case SyntaxKind.ReturnKeyword:
@@ -225,9 +225,6 @@ public class SimpleSyntaxParser(
     }
 
 
-    //TODO
-    //Добавить ебаный семантический анализ
-    //и проверку на массив
     private TypeClauseSyntax ParseTypeClause()
     {
         var coloToke = MatchToken(SyntaxKind.ColonToken);
@@ -255,14 +252,14 @@ public class SimpleSyntaxParser(
 
     }
 
-    /*private CaseStatementSyntax ParseCaseStatement()
+    private CaseStatementSyntax ParseCaseStatement()
     {
         var keyword = MatchToken(SyntaxKind.CaseKeyword);
         var condition = ParseExpression();
         var statement = ParseStatement();
         var endKeyword = MatchToken(SyntaxKind.EndKeyword);
         return new CaseExpressionSyntax(keyword, condition, statement, endKeyword);
-    }*/
+    }
 
     private ElseClauseSyntax? ParseOptionalElseClause()
     {
